@@ -5,7 +5,7 @@ A gulp plugin for [fcsh](http://help.adobe.com/en_US/flex/using/WS2db454920e96a9
 ## Usage
 
 ```javascript
-var fsch = require('gulp-fcsh'),
+var fcsh = require('gulp-fcsh'),
 
 gulp.src('Main.as')
   .pipe(fcsh({
