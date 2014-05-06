@@ -16,7 +16,7 @@
     "fcsh"
   ],
   "author": "youpy",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/youpy/gulp-fcsh/issues"
   },
