@@ -1,0 +1,33 @@
+{
+  "name": "gulp-fcsh",
+  "version": "0.0.1",
+  "description": "A gulp plugin for fcsh",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/youpy/gulp-fcsh.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "actionscript",
+    "fcsh"
+  ],
+  "author": "youpy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youpy/gulp-fcsh/issues"
+  },
+  "homepage": "https://github.com/youpy/gulp-fcsh",
+  "dependencies": {
+    "gulp-util": "^2.2.14",
+    "lodash": "^2.4.1",
+    "through2": "^0.4.1"
+  },
+  "devDependencies": {
+    "assert": "^1.1.1",
+    "mocha": "^1.18.2"
+  }
+}
