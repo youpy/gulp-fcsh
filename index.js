@@ -5,6 +5,7 @@ var PLUGIN_NAME = 'gulp-fcsh';
 var _ = require('lodash'),
     through = require('through2'),
     gutil = require('gulp-util'),
+    File = require('vinyl'),
     PluginError = gutil.PluginError;
 
 var spawn = require('child_process').spawn,
@@ -53,7 +54,14 @@ function gulpFcsh(options) {
           }
 
           removeListeners();
-          self.push(file);
+
+          var swfFile = new File({
+            cwd: file.cwd,
+            base: file.base,
+            path: file.path.replace(/\.as$/, '.swf')
+          });
+
+          self.push(swfFile);
 
           done();
         } else if(str.match(/Nothing\ has\ changed/)) {

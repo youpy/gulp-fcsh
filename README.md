@@ -11,6 +11,7 @@ gulp.src('Main.as')
   .pipe(fcsh({
     compileOptions: '-static-link-runtime-shared-libraries'
   }))
+  .pipe(gulp.dest('app/swf'))
   .pipe(connect.reload());
 });
 ```

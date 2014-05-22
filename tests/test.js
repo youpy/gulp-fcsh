@@ -42,7 +42,7 @@ describe('gulp-fcsh', function() {
         assert(newFile);
         assert.equal(newFile.cwd, tempdir);
         assert.equal(newFile.base, tempdir);
-        assert.equal(newFile.path, asPath);
+        assert.equal(newFile.path, swfPath);
 
         assert.ok(fs.existsSync(swfPath));
 
