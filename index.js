@@ -3,6 +3,7 @@
 var PLUGIN_NAME = 'gulp-fcsh';
 
 var _ = require('lodash'),
+    fs = require('fs'),
     through = require('through2'),
     gutil = require('gulp-util'),
     File = require('vinyl'),
@@ -55,10 +56,12 @@ function gulpFcsh(options) {
 
           removeListeners();
 
+          var swfPath = file.path.replace(/\.as$/, '.swf');
           var swfFile = new File({
             cwd: file.cwd,
             base: file.base,
-            path: file.path.replace(/\.as$/, '.swf')
+            path: swfPath,
+            contents: fs.createReadStream(swfPath)
           });
 
           self.push(swfFile);

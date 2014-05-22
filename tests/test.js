@@ -1,6 +1,7 @@
 'use strict';
 
 var gulpFcsh = require('../'),
+    gulp = require('gulp'),
     gutil = require('gulp-util'),
     stream = require('stream'),
     os = require('os'),
@@ -15,7 +16,9 @@ describe('gulp-fcsh', function() {
 
     var tempdir = os.tmpdir(),
         asPath = path.join(tempdir, 'Test.as'),
-        swfPath = path.join(tempdir,  'Test.swf');
+        swfPath = path.join(tempdir,  'Test.swf'),
+        destDirPath = path.join(tempdir, 'dest'),
+        destPath = path.join(destDirPath, 'Test.swf');
 
     var testCase = function(done) {
       var fakeFile = new gutil.File({
@@ -34,17 +37,17 @@ describe('gulp-fcsh', function() {
 
       inputStream
         .pipe(fcshStream)
+        .pipe(gulp.dest(destDirPath))
         .pipe(outputStream);
 
       outputStream.on('readable', function() {
         var newFile = outputStream.read();
 
         assert(newFile);
-        assert.equal(newFile.cwd, tempdir);
-        assert.equal(newFile.base, tempdir);
-        assert.equal(newFile.path, swfPath);
+        assert.equal(newFile.base, destDirPath);
+        assert.equal(newFile.path, destPath);
 
-        assert.ok(fs.existsSync(swfPath));
+        assert.ok(fs.existsSync(destPath));
 
         done();
       });
