@@ -46,14 +46,13 @@ function gulpFcsh(options) {
       .on('data', function(chunk) {
         str += chunk.toString();
 
+        var matched = str.match(/fcsh: Assigned (\d+) as/);
+        if (matched) {
+          targetIds[file.path] = matched[1];
+        }
+
         if (str.match(/\(fcsh\) $/)) {
           if (str.match(/\.swf \(\d+ bytes\)/)) {
-            var matched = str.match(/fcsh: Assigned (\d+) as/);
-
-            if (matched) {
-              targetIds[file.path] = matched[1];
-            }
-
             removeListeners();
 
             var swfPath = file.path.replace(/\.as$/, '.swf');
@@ -84,6 +83,7 @@ function gulpFcsh(options) {
             }
           } else {
             removeListeners();
+
             done(err('failed to compile'), null);
           }
         }
