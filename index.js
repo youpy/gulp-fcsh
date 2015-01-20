@@ -69,7 +69,7 @@ function gulpFcsh(options) {
             removeListeners();
 
             done(null, null);
-          } else if (str.match(/^Adobe/)) {
+          } else if (str.match(/^(Adobe|Apache)/)) {
             str = '';
 
             fcsh.stdin.write(
