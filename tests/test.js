@@ -12,11 +12,11 @@ var gulpFcsh = require('../'),
 
 describe('gulp-fcsh', function() {
   describe('compilation', function() {
-    this.timeout(5000);
+    this.timeout(10000);
 
     var tempdir = os.tmpdir(),
         asPath = path.join(tempdir, 'Test.as'),
-        swfPath = path.join(tempdir,  'Test.swf'),
+        swfPath = path.join(tempdir, 'Test.swf'),
         destDirPath = path.join(tempdir, 'dest'),
         destPath = path.join(destDirPath, 'Test.swf');
 
@@ -57,11 +57,14 @@ describe('gulp-fcsh', function() {
     };
 
     beforeEach(function() {
-      if(fs.existsSync(swfPath)) {
+      if (fs.existsSync(swfPath)) {
         fs.unlinkSync(swfPath);
       }
 
-      fs.writeFileSync(asPath, fs.readFileSync(path.resolve(__dirname, 'Test.as')));
+      fs.writeFileSync(
+        asPath,
+        fs.readFileSync(path.resolve(__dirname, 'Test.as'))
+      );
     });
 
     it('compiles', testCase);
