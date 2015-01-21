@@ -13,7 +13,9 @@ var _ = require('lodash'),
     targetIds = {};
 
 fcsh.stderr.on('data', function(chunk) {
-  gutil.log(gutil.colors.red(chunk.toString()));
+  chunk.toString().split(/\n/).forEach(function(line) {
+    gutil.log(gutil.colors.cyan(PLUGIN_NAME) + ': ' + line);
+  });
 });
 
 function removeListeners() {
