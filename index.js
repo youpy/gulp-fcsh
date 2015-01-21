@@ -12,7 +12,9 @@ var _ = require('lodash'),
     fcsh = spawn('fcsh'),
     targetIds = {};
 
-fcsh.stderr.pipe(process.stderr);
+fcsh.stderr.on('data', function(chunk) {
+  gutil.log(chunk.toString());
+});
 
 function removeListeners() {
   fcsh.stdout.removeAllListeners('data');
