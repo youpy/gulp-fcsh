@@ -13,7 +13,7 @@ var _ = require('lodash'),
     targetIds = {};
 
 fcsh.stderr.on('data', function(chunk) {
-  gutil.log(chunk.toString());
+  gutil.log(gutil.colors.red(chunk.toString()));
 });
 
 function removeListeners() {
