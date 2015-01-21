@@ -56,7 +56,10 @@ describe('gulp-fcsh', function() {
 
           assertFn(newFile);
 
-          done();
+          // XXX
+          setTimeout(function() {
+            done();
+          }, 1000);
         });
 
         inputStream.write(fakeFile);
