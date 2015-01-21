@@ -19,6 +19,14 @@ function removeListeners() {
   fcsh.stdout.removeAllListeners('error');
 }
 
+function write(str) {
+  if (process.env.DEBUG) {
+    gutil.log('write: ' + str);
+  }
+
+  fcsh.stdin.write(str);
+}
+
 function err(msg) {
   return new gutil.PluginError(PLUGIN_NAME, msg);
 }
@@ -39,11 +47,15 @@ function gulpFcsh(options) {
     }
 
     if (targetIds[file.path]) {
-      fcsh.stdin.write('\n');
+      write('\n');
     }
 
     fcsh.stdout
       .on('data', function(chunk) {
+        if (process.env.DEBUG) {
+          gutil.log('read: ' + chunk.toString());
+        }
+
         str += chunk.toString();
 
         var matched = str.match(/fcsh: Assigned (\d+) as/);
@@ -71,7 +83,7 @@ function gulpFcsh(options) {
           } else if (str.match(/^(Adobe|Apache)/)) {
             str = '';
 
-            fcsh.stdin.write(
+            write(
               'mxmlc ' + options.compileOptions + ' ' +
                 file.path + '\n'
             );
@@ -79,7 +91,7 @@ function gulpFcsh(options) {
             str = '';
 
             if (targetIds[file.path]) {
-              fcsh.stdin.write('compile ' + targetIds[file.path] + '\n');
+              write('compile ' + targetIds[file.path] + '\n');
             }
           } else {
             removeListeners();
