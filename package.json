@@ -1,6 +1,6 @@
 {
   "name": "gulp-fcsh",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A gulp plugin for fcsh",
   "main": "index.js",
   "scripts": {
